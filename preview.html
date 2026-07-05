@@ -3,96 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thataflix Theme Preview</title>
+<title>Thataflix — Jellyfin Theme Preview</title>
 <style>
   @font-face {
     font-family: 'Thata Regular';
-    src: url('dist/fonts/thata-regular.woff2') format('woff2');
+    src: url('src/themes/thataflix/thata-regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
   }
 
   :root {
-    --bg-default: #151515;
-    --bg-paper: #202020;
-    --bg-appbar: #1a1a1a;
-    --primary: #fb610f;
-    --primary-dark: #d04e00;
-    --primary-light: #fc8140;
-    --text-primary: #fbfaf7;
-    --text-secondary: rgba(251, 250, 247, 0.7);
-    --accent-hover: rgba(251, 97, 15, 0.15);
-    --card-radius: 0.6em;
-    --divider: rgba(251, 250, 247, 0.08);
-    --star: #f2b01e;
-    --input-bg: rgba(255, 255, 255, 0.06);
+    --bg: #202020;
+    --surface: #2a2a2a;
+    --accent: #fb610f;
+    --accent-hover: #d04e00;
+    --text: #fbfaf7;
+    --text-secondary: rgba(251, 250, 247, 0.65);
+    --action: #e0deca;
+    --card-radius: 0.4em;
+    --border: rgba(251, 250, 247, 0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: var(--bg-default);
-    color: var(--text-primary);
+    font-family: 'Brandon Grot', 'Segoe UI', system-ui, sans-serif;
+    font-weight: 300;
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ─── Header ─── */
+  /* ── Header ── */
   .header {
-    background: var(--bg-appbar);
-    padding: 12px 24px;
+    background: var(--bg);
+    padding: 16px 48px;
     display: flex;
     align-items: center;
-    gap: 32px;
-    border-bottom: 1px solid var(--divider);
+    gap: 48px;
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
   }
 
   .logo {
-    font-family: 'Thata Regular', 'Segoe UI', sans-serif;
-    font-size: 28px;
-    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .logo-text {
+    font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
+    font-size: 22px;
+    color: var(--text);
     letter-spacing: 1px;
   }
 
-  .logo span {
-    color: var(--text-primary);
-    font-family: inherit;
-  }
+  .logo-text span { color: var(--accent); }
 
   .nav-links {
     display: flex;
-    gap: 24px;
+    gap: 32px;
     list-style: none;
   }
 
   .nav-links a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     padding: 4px 0;
     transition: color 0.2s;
   }
 
   .nav-links a:hover,
   .nav-links a.active {
-    color: var(--primary);
-  }
-
-  .nav-links a.active {
-    border-bottom: 2px solid var(--primary);
+    color: var(--accent);
   }
 
   .header-actions {
     margin-left: auto;
     display: flex;
-    gap: 16px;
+    gap: 8px;
     align-items: center;
   }
 
@@ -108,238 +119,261 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .icon-btn:hover {
-    background: var(--accent-hover);
-    color: var(--primary);
+    background: rgba(251, 97, 15, 0.12);
+    color: var(--accent);
   }
 
   .search-box {
-    background: var(--input-bg);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(251, 97, 15, 0.25);
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 8px 14px;
-    color: var(--text-primary);
-    width: 240px;
-    font-size: 14px;
+    color: var(--text);
+    width: 200px;
+    font-size: 13px;
     outline: none;
     transition: border-color 0.2s;
+    font-weight: 300;
   }
 
-  .search-box:focus {
-    border-color: var(--primary);
-  }
+  .search-box:focus { border-color: var(--accent); }
+  .search-box::placeholder { color: var(--text-secondary); }
 
-  .search-box::placeholder {
-    color: var(--text-secondary);
-  }
-
-  /* ─── Layout ─── */
+  /* ── Layout ── */
   .layout {
     display: flex;
-    min-height: calc(100vh - 61px);
+    min-height: calc(100vh - 65px);
   }
 
-  /* ─── Sidebar ─── */
+  /* ── Sidebar ── */
   .sidebar {
-    width: 240px;
-    background: var(--bg-paper);
-    padding: 16px 0;
-    border-right: 1px solid var(--divider);
+    width: 220px;
+    padding: 24px 0;
     flex-shrink: 0;
   }
 
   .sidebar-section {
-    padding: 8px 16px;
-    font-size: 11px;
+    padding: 8px 24px;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--text-secondary);
-    font-weight: 600;
+    font-weight: 300;
+    margin-top: 16px;
   }
+
+  .sidebar-section:first-child { margin-top: 0; }
 
   .sidebar-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 16px;
+    padding: 10px 24px;
     color: var(--text-secondary);
     text-decoration: none;
     font-size: 14px;
+    font-weight: 300;
     transition: all 0.15s;
     cursor: pointer;
-    border-left: 3px solid transparent;
+    border-left: 2px solid transparent;
   }
 
   .sidebar-item:hover {
-    background: var(--accent-hover);
-    color: var(--text-primary);
+    color: var(--accent);
+    background: rgba(251, 97, 15, 0.06);
   }
 
   .sidebar-item.active {
-    background: var(--primary);
-    color: #fff;
-    border-left-color: var(--primary-light);
+    background: rgba(251, 97, 15, 0.1);
+    color: var(--accent);
+    border-left-color: var(--accent);
   }
 
-  .sidebar-item .icon { font-size: 18px; width: 24px; text-align: center; }
+  .sidebar-item .icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    opacity: 0.6;
+  }
+
+  .sidebar-item.active .icon { opacity: 1; }
 
   .sidebar-divider {
     height: 1px;
-    background: var(--divider);
-    margin: 12px 16px;
+    background: var(--border);
+    margin: 12px 24px;
   }
 
-  /* ─── Content ─── */
+  /* ── Content ── */
   .content {
     flex: 1;
-    padding: 24px;
+    padding: 32px 48px 48px 32px;
     overflow-y: auto;
-  }
-
-  .section-title {
-    font-family: 'Thata Regular', 'Segoe UI', sans-serif;
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: var(--text-primary);
   }
 
   .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+    align-items: baseline;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.5px;
   }
 
   .see-all {
-    color: var(--primary);
+    color: var(--accent);
     text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    transition: color 0.2s;
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.2s;
   }
 
-  .see-all:hover {
-    color: var(--primary-light);
-  }
+  .see-all:hover { opacity: 0.7; }
 
-  /* ─── Cards ─── */
+  /* ── Cards ── */
   .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 48px;
   }
 
   .card {
-    background: var(--bg-paper);
+    background: var(--surface);
     border-radius: var(--card-radius);
     overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
-    border: 2px solid transparent;
+    border: 1.5px solid transparent;
   }
 
   .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(251, 97, 15, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   }
 
-  .card:focus,
   .card:focus-within {
-    border-color: var(--primary);
+    border-color: var(--accent);
   }
 
   .card-img {
     width: 100%;
     aspect-ratio: 2/3;
-    background: linear-gradient(135deg, #2d2d2d, #1a1a2e);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    color: rgba(251, 250, 247, 0.15);
+    font-size: 32px;
+    color: rgba(251, 250, 247, 0.08);
   }
 
-  .card-img.orange { background: linear-gradient(135deg, #fb610f, #d04e00); }
-  .card-img.dark-blue { background: linear-gradient(135deg, #1a1a2e, #0d0d1a); }
-  .card-img.dark-green { background: linear-gradient(135deg, #1c3d02, #2d5a03); }
-  .card-img.brown { background: linear-gradient(135deg, #3d1c02, #5a2a03); }
-  .card-img.grey { background: linear-gradient(135deg, #2d2d2d, #3d3d3d); }
+  .card-img.n1 { background: linear-gradient(135deg, #3d2b1f, #2a1a10); }
+  .card-img.n2 { background: linear-gradient(135deg, #2a1a3d, #1a0d2e); }
+  .card-img.n3 { background: linear-gradient(135deg, #1f3d2b, #14281c); }
+  .card-img.n4 { background: linear-gradient(135deg, #3d1f1f, #2a1212); }
+  .card-img.n5 { background: linear-gradient(135deg, #1f2b3d, #121c2a); }
+  .card-img.n6 { background: linear-gradient(135deg, #3d3d1f, #2a2a12); }
 
-  .card-body {
-    padding: 12px;
-  }
+  .card-body { padding: 12px; }
 
   .card-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
+    letter-spacing: 0.3px;
   }
 
   .card-subtitle {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-secondary);
+    font-weight: 300;
   }
 
   .card-badge {
     display: inline-block;
-    background: var(--primary);
+    background: var(--accent);
     color: #fff;
-    font-size: 10px;
+    font-size: 9px;
     padding: 2px 6px;
-    border-radius: 4px;
+    border-radius: 2px;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .card .progress-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 1px;
+    overflow: hidden;
     margin-top: 6px;
   }
 
-  /* ─── Detail page ─── */
+  .card .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 1px;
+    transition: width 0.3s;
+  }
+
+  /* ── Detail ── */
   .detail-header {
     display: flex;
     gap: 32px;
-    margin-bottom: 32px;
+    margin-bottom: 40px;
   }
 
   .detail-poster {
-    width: 240px;
+    width: 200px;
     aspect-ratio: 2/3;
-    background: linear-gradient(135deg, #1a1a2e, #0d0d1a);
+    background: linear-gradient(135deg, #2a1a3d, #1a0d2e);
     border-radius: var(--card-radius);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 60px;
-    color: rgba(251, 250, 247, 0.1);
+    font-size: 48px;
+    color: rgba(251, 250, 247, 0.06);
   }
 
-  .detail-info {
-    flex: 1;
-  }
+  .detail-info { flex: 1; }
 
   .detail-title {
-    font-family: 'Thata Regular', 'Segoe UI', sans-serif;
-    font-size: 36px;
-    margin-bottom: 12px;
+    font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
+    font-size: 32px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
   }
 
   .detail-meta {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     align-items: center;
     margin-bottom: 16px;
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 300;
   }
 
+  .detail-meta .sep { opacity: 0.3; }
+
   .detail-rating {
-    color: var(--star);
-    font-weight: 600;
+    color: #f2b01e;
   }
 
   .detail-tags {
@@ -350,60 +384,59 @@
   }
 
   .tag {
-    background: var(--input-bg);
-    border: 1px solid var(--divider);
+    border: 1px solid var(--border);
     padding: 4px 12px;
-    border-radius: 16px;
-    font-size: 12px;
+    border-radius: 2px;
+    font-size: 11px;
     color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 300;
   }
 
   .tag.accent {
-    background: rgba(251, 97, 15, 0.15);
-    border-color: var(--primary);
-    color: var(--primary);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .detail-desc {
     color: var(--text-secondary);
     font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 20px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 24px;
   }
 
-  /* ─── Buttons ─── */
   .btn-row {
     display: flex;
     gap: 12px;
   }
 
   .btn {
-    padding: 10px 24px;
+    padding: 10px 28px;
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 300;
     cursor: pointer;
     transition: all 0.2s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
   }
 
   .btn-primary {
-    background: var(--primary);
+    background: var(--accent);
     color: #fff;
   }
 
-  .btn-primary:hover {
-    background: var(--primary-dark);
-  }
+  .btn-primary:hover { background: var(--accent-hover); }
 
   .btn-secondary {
-    background: #2a2a2a;
-    color: var(--text-primary);
+    background: #333;
+    color: var(--text-secondary);
   }
 
-  .btn-secondary:hover {
-    background: #333;
-  }
+  .btn-secondary:hover { background: #404040; color: var(--text); }
 
   .btn-icon {
     width: 40px;
@@ -413,249 +446,247 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 16px;
   }
 
-  /* ─── Progress bars ─── */
-  .progress-bar {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 2px;
-    overflow: hidden;
-    margin-top: 8px;
-  }
-
-  .progress-fill {
-    height: 100%;
-    background: var(--primary);
-    border-radius: 2px;
-    transition: width 0.3s;
-  }
-
-  /* ─── List items ─── */
+  /* ── List ── */
   .list-item {
     display: flex;
     align-items: center;
     gap: 16px;
     padding: 12px 16px;
-    border-bottom: 1px solid var(--divider);
+    border-bottom: 1px solid var(--border);
     transition: background 0.15s;
     cursor: pointer;
   }
 
-  .list-item:hover {
-    background: var(--accent-hover);
-  }
+  .list-item:last-child { border-bottom: none; }
+
+  .list-item:hover { background: rgba(251, 97, 15, 0.04); }
 
   .list-item .index {
-    width: 24px;
+    width: 20px;
     color: var(--text-secondary);
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
   }
 
   .list-item .thumb {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #2d2d2d, #1a1a2e);
-    border-radius: 4px;
+    background: linear-gradient(135deg, #2a2a2a, #333);
+    border-radius: 3px;
     flex-shrink: 0;
   }
 
   .list-item .info { flex: 1; }
-  .list-item .info .title { font-size: 14px; }
-  .list-item .info .sub { font-size: 12px; color: var(--text-secondary); }
-  .list-item .duration { color: var(--text-secondary); font-size: 13px; }
+  .list-item .info .title { font-size: 14px; font-weight: 300; }
+  .list-item .info .sub { font-size: 12px; color: var(--text-secondary); font-weight: 300; }
+  .list-item .duration { color: var(--text-secondary); font-size: 12px; font-weight: 300; }
   .list-item .progress { width: 80px; }
 
-  /* ─── Scrollbar ─── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg-paper); }
-  ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+  .list-item .progress-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 1px;
+    overflow: hidden;
+  }
 
-  /* ─── Footer ─── */
+  .list-item .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+  /* ── Footer ── */
   .footer {
-    background: var(--bg-paper);
-    padding: 32px 24px;
+    padding: 40px 48px;
     text-align: center;
-    border-top: 1px solid var(--divider);
+    border-top: 1px solid var(--border);
     color: var(--text-secondary);
     font-size: 12px;
+    font-weight: 300;
   }
 
-  .footer .logo-small {
-    font-family: 'Thata Regular', 'Segoe UI', sans-serif;
-    color: var(--primary);
+  .footer .brand {
+    font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
+    color: var(--accent);
     font-size: 18px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
   }
 
-  /* ─── Responsive ─── */
+  .footer .brand span { color: var(--text); }
+
+  /* ── Responsive ── */
   @media (max-width: 768px) {
     .sidebar { display: none; }
+    .header { padding: 12px 16px; gap: 24px; }
+    .content { padding: 24px 16px; }
+    .nav-links { display: none; }
+    .search-box { width: 120px; }
     .detail-header { flex-direction: column; }
-    .detail-poster { width: 100%; max-width: 200px; }
-    .header { padding: 12px 16px; gap: 16px; }
-    .search-box { width: 140px; }
-    .card-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
+    .detail-poster { width: 100%; max-width: 180px; }
+    .card-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; }
+    .footer { padding: 24px 16px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══ Header ═══ -->
 <header class="header">
-  <a href="#" class="logo">Thata<span>flix</span></a>
+  <a href="#" class="logo">
+    <div class="logo-mark">T</div>
+    <span class="logo-text">thata<span>flix</span></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#" class="active">Home</a></li>
     <li><a href="#">Movies</a></li>
-    <li><a href="#">TV Shows</a></li>
+    <li><a href="#">Series</a></li>
     <li><a href="#">Music</a></li>
   </ul>
   <div class="header-actions">
     <input class="search-box" placeholder="Search..." type="text">
-    <button class="icon-btn" title="Notifications">🔔</button>
-    <button class="icon-btn" title="Settings">⚙️</button>
-    <button class="icon-btn" title="User">👤</button>
+    <button class="icon-btn">🔔</button>
+    <button class="icon-btn">⚙️</button>
+    <button class="icon-btn">👤</button>
   </div>
 </header>
 
-<!-- ═══ Main Layout ═══ -->
 <div class="layout">
 
-  <!-- ═══ Sidebar ═══ -->
   <nav class="sidebar">
-    <div class="sidebar-section">Menu</div>
-    <a class="sidebar-item active"><span class="icon">🏠</span> Home</a>
-    <a class="sidebar-item"><span class="icon">🎬</span> Movies</a>
-    <a class="sidebar-item"><span class="icon">📺</span> TV Shows</a>
-    <a class="sidebar-item"><span class="icon">🎵</span> Music</a>
-    <a class="sidebar-item"><span class="icon">📂</span> Collections</a>
-
+    <div class="sidebar-section">Browse</div>
+    <a class="sidebar-item active"><span class="icon">⌂</span> Home</a>
+    <a class="sidebar-item"><span class="icon">⊞</span> Movies</a>
+    <a class="sidebar-item"><span class="icon">≡</span> Series</a>
+    <a class="sidebar-item"><span class="icon">♫</span> Music</a>
+    <a class="sidebar-item"><span class="icon">✦</span> Collections</a>
     <div class="sidebar-divider"></div>
     <div class="sidebar-section">Library</div>
-    <a class="sidebar-item"><span class="icon">📁</span> Favorites</a>
-    <a class="sidebar-item"><span class="icon">⏱️</span> Continue Watching</a>
-    <a class="sidebar-item"><span class="icon">📋</span> Playlists</a>
-
+    <a class="sidebar-item"><span class="icon">☆</span> Favorites</a>
+    <a class="sidebar-item"><span class="icon">↻</span> Continue</a>
+    <a class="sidebar-item"><span class="icon">☰</span> Playlists</a>
     <div class="sidebar-divider"></div>
     <div class="sidebar-section">Admin</div>
-    <a class="sidebar-item"><span class="icon">📊</span> Dashboard</a>
-    <a class="sidebar-item"><span class="icon">👥</span> Users</a>
+    <a class="sidebar-item"><span class="icon">◉</span> Dashboard</a>
+    <a class="sidebar-item"><span class="icon">◎</span> Users</a>
   </nav>
 
-  <!-- ═══ Content ═══ -->
   <main class="content">
 
-    <!-- Continue Watching -->
+    <!-- Continue -->
     <div class="section-header">
       <h2 class="section-title">Continue Watching</h2>
       <a href="#" class="see-all">See All →</a>
     </div>
     <div class="card-grid">
       <div class="card" tabindex="0">
-        <div class="card-img dark-blue">🎬</div>
+        <div class="card-img n2">⌂</div>
         <div class="card-body">
           <div class="card-title">Interstellar</div>
-          <div class="card-subtitle">2h 49m • 65% watched</div>
+          <div class="card-subtitle">2h 49m · 65%</div>
           <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img orange">🎬</div>
+        <div class="card-img n1">⌂</div>
         <div class="card-body">
-          <div class="card-title">Mad Max: Fury Road</div>
-          <div class="card-subtitle">2h 0m • 30% watched</div>
+          <div class="card-title">Mad Max Fury Road</div>
+          <div class="card-subtitle">2h 00m · 30%</div>
           <div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img grey">🎬</div>
+        <div class="card-img n5">⌂</div>
         <div class="card-body">
           <div class="card-title">Blade Runner 2049</div>
-          <div class="card-subtitle">2h 44m • 80% watched</div>
+          <div class="card-subtitle">2h 44m · 80%</div>
           <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img dark-green">🎬</div>
+        <div class="card-img n3">⌂</div>
         <div class="card-body">
-          <div class="card-title">Dune: Part Two</div>
-          <div class="card-subtitle">2h 46m • 15% watched</div>
+          <div class="card-title">Dune Part Two</div>
+          <div class="card-subtitle">2h 46m · 15%</div>
           <div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
         </div>
       </div>
     </div>
 
-    <!-- Latest Movies -->
+    <!-- Latest -->
     <div class="section-header">
       <h2 class="section-title">Latest Movies</h2>
       <a href="#" class="see-all">See All →</a>
     </div>
     <div class="card-grid">
       <div class="card" tabindex="0">
-        <div class="card-img dark-blue">🎬</div>
+        <div class="card-img n5">⌂</div>
         <div class="card-body">
           <div class="card-title">Oppenheimer</div>
-          <div class="card-subtitle">2023 • 3h 0m</div>
+          <div class="card-subtitle">2023 · 3h 00m</div>
           <span class="card-badge">NEW</span>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img brown">🎬</div>
+        <div class="card-img n4">⌂</div>
         <div class="card-body">
           <div class="card-title">The Batman</div>
-          <div class="card-subtitle">2022 • 2h 56m</div>
+          <div class="card-subtitle">2022 · 2h 56m</div>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img grey">🎬</div>
+        <div class="card-img n6">⌂</div>
         <div class="card-body">
-          <div class="card-title">Everything Everywhere All at Once</div>
-          <div class="card-subtitle">2022 • 2h 19m</div>
+          <div class="card-title">Everything Everywhere</div>
+          <div class="card-subtitle">2022 · 2h 19m</div>
           <span class="card-badge">★ 8.0</span>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img orange">🎬</div>
+        <div class="card-img n1">⌂</div>
         <div class="card-body">
-          <div class="card-title">The Killer</div>
-          <div class="card-subtitle">2023 • 1h 58m</div>
+          <div class="card-title">Past Lives</div>
+          <div class="card-subtitle">2023 · 1h 46m</div>
         </div>
       </div>
       <div class="card" tabindex="0">
-        <div class="card-img dark-green">🎬</div>
+        <div class="card-img n2">⌂</div>
         <div class="card-body">
-          <div class="card-title">Past Lives</div>
-          <div class="card-subtitle">2023 • 1h 46m</div>
+          <div class="card-title">The Killer</div>
+          <div class="card-subtitle">2023 · 1h 58m</div>
         </div>
       </div>
     </div>
 
-    <!-- Detail Section -->
-    <div class="section-header" style="margin-top: 16px;">
+    <!-- Detail -->
+    <div class="section-header">
       <h2 class="section-title">Now Playing</h2>
     </div>
-
     <div class="detail-header">
-      <div class="detail-poster">🎬</div>
+      <div class="detail-poster">⌂</div>
       <div class="detail-info">
         <h1 class="detail-title">Interstellar</h1>
         <div class="detail-meta">
           <span>2014</span>
-          <span>•</span>
+          <span class="sep">·</span>
           <span>2h 49m</span>
-          <span>•</span>
+          <span class="sep">·</span>
           <span class="detail-rating">★ 8.7</span>
-          <span>•</span>
+          <span class="sep">·</span>
           <span>PG-13</span>
         </div>
         <div class="detail-tags">
           <span class="tag accent">Sci-Fi</span>
           <span class="tag">Adventure</span>
           <span class="tag">Drama</span>
-          <span class="tag">Christopher Nolan</span>
+          <span class="tag">Nolan</span>
         </div>
         <p class="detail-desc">
           When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot,
@@ -664,51 +695,55 @@
         </p>
         <div class="btn-row">
           <button class="btn btn-primary">▶ Play</button>
-          <button class="btn btn-secondary">+ Add to Favorites</button>
-          <button class="btn btn-secondary btn-icon">👍</button>
-          <button class="btn btn-secondary btn-icon">👎</button>
+          <button class="btn btn-secondary">+ Favorites</button>
+          <button class="btn btn-secondary btn-icon">↑</button>
+          <button class="btn btn-secondary btn-icon">↓</button>
         </div>
       </div>
     </div>
 
-    <!-- Season List -->
-    <h3 style="font-family:'Thata Regular';font-size:22px;margin-bottom:12px;margin-top:24px;">Episodes</h3>
-    <div>
+    <!-- Episode List -->
+    <h3 style="font-family:'Thata Regular',sans-serif;font-size:20px;margin-bottom:16px;letter-spacing:0.5px;">Episodes</h3>
+    <div style="border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden;">
       <div class="list-item">
-        <span class="index">1</span>
+        <span class="index">01</span>
         <div class="thumb"></div>
         <div class="info">
           <div class="title">The End of the World</div>
-          <div class="sub">S01E01 • 1h 30m</div>
+          <div class="sub">S01E01 · 1h 30m</div>
         </div>
-        <div class="progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-        </div>
+        <div class="progress"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
         <span class="duration">Watched</span>
       </div>
       <div class="list-item">
-        <span class="index">2</span>
+        <span class="index">02</span>
         <div class="thumb"></div>
         <div class="info">
           <div class="title">The Wormhole</div>
-          <div class="sub">S01E02 • 1h 25m</div>
+          <div class="sub">S01E02 · 1h 25m</div>
         </div>
-        <div class="progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-        </div>
+        <div class="progress"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
         <span class="duration">Watched</span>
       </div>
       <div class="list-item">
-        <span class="index">3</span>
+        <span class="index">03</span>
         <div class="thumb"></div>
         <div class="info">
           <div class="title">Miller's Planet</div>
-          <div class="sub">S01E03 • 1h 35m</div>
+          <div class="sub">S01E03 · 1h 35m</div>
         </div>
-        <div class="progress">
-          <div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div>
-        </div>
+        <div class="progress"><div class="progress-bar"><div class="progress-fill" style="width:45%"></div></div></div>
         <span class="duration">45%</span>
+      </div>
+      <div class="list-item">
+        <span class="index">04</span>
+        <div class="thumb"></div>
+        <div class="info">
+          <div class="title">Gargantua</div>
+          <div class="sub">S01E04 · 1h 20m</div>
+        </div>
+        <div class="progress"><div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div></div>
+        <span class="duration">—</span>
       </div>
     </div>
 
@@ -716,9 +751,9 @@
 </div>
 
 <footer class="footer">
-  <div class="logo-small">Thataflix</div>
-  <p>Jellyfin theme inspired by thalitaneres.com.br</p>
-  <p style="margin-top:4px;opacity:0.6;">Built with ❤️ and ☕</p>
+  <div class="brand">thata<span>flix</span></div>
+  <p>Jellyfin theme · inspired by thalitaneres.com.br</p>
+  <p style="margin-top:4px;opacity:0.5;font-size:11px;">orange accent · dark minimal · custom font</p>
 </footer>
 
 </body>

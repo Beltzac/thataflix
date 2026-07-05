@@ -1,11 +1,10 @@
 @use '../_base/theme' with (
-    // Theme options
     $dark: true,
 
-    // Color palette - Inspired by thalitaneres.com.br
-    $background-default: #151515,
+    // ── Palette from thalitaneres.com.br ──
+    $background-default: #202020,
     $background-defaultImage: none,
-    $background-paper: #202020,
+    $background-paper: #2a2a2a,
     $primary-main: #fb610f,
     $primary-dark: #d04e00,
     $primary-light: #fc8140,
@@ -21,23 +20,24 @@
     $action-hover: rgba(251, 97, 15, 0.12),
     $divider: rgba(251, 250, 247, 0.08),
 
-    // Components
-    $appBar-defaultBg: #1a1a1a,
-    $appBar-transparentBg: rgba(21, 21, 21, 0.75),
+    // ── Components ──
+    $appBar-defaultBg: #202020,
+    $appBar-transparentBg: rgba(32, 32, 32, 0.85),
     $filledInput-bg: rgba(255, 255, 255, 0.06),
     $filledInput-borderColor: rgba(251, 97, 15, 0.3),
-    $card-borderRadius: 0.6em,
-    $alert-infoFilledBg: #1a1a1a,
+    $card-borderRadius: 0.4em,
+    $alert-infoFilledBg: #2a2a2a,
     $alert-infoFilledColor: #fbfaf7,
-    $button-inheritContainedBg: #2a2a2a,
-    $button-inheritContainedHoverBg: #333333,
-    $snackbarContent-bg: #202020,
+    $button-inheritContainedBg: #333333,
+    $button-inheritContainedHoverBg: #404040,
+    $snackbarContent-bg: #2a2a2a,
     $snackbarContent-color: #fbfaf7
 );
 
-/* ─── Thataflix specific overrides ─── */
+/* ─── Thataflix Theme ───────────────────────────── */
+/*  Inspired by thalitaneres.com.br                  */
+/*  Dark minimal · orange accent · custom font       */
 
-/* Custom font loading */
 @font-face {
     font-family: 'Thata Regular';
     src: url('thata-regular.woff2') format('woff2');
@@ -46,57 +46,40 @@
     font-display: swap;
 }
 
-/* Card background color variants */
-.defaultCardBackground1 {
-    background-color: #fb610f;
+/* Override heading font via root variable */
+:root {
+    --jf-fontFamily-heading: 'Thata Regular', 'Brandon Grot', 'Segoe UI', sans-serif;
+    --jf-card-borderRadius: 0.4em;
 }
 
-.defaultCardBackground2 {
-    background-color: #1a1a2e;
-}
+/* ─── Card backgrounds ─── */
+.defaultCardBackground1 { background-color: #3d2b1f; }
+.defaultCardBackground2 { background-color: #2a1a3d; }
+.defaultCardBackground3 { background-color: #1f3d2b; }
+.defaultCardBackground4 { background-color: #3d1f1f; }
+.defaultCardBackground5 { background-color: #1f2b3d; }
 
-.defaultCardBackground3 {
-    background-color: #2d2d2d;
-}
-
-.defaultCardBackground4 {
-    background-color: #3d1c02;
-}
-
-.defaultCardBackground5 {
-    background-color: #1c3d02;
-}
-
-/* Detail ribbon - gradient inspired by the site's header */
+/* ─── Detail ribbon ─── */
 .detailRibbon {
-    background: linear-gradient(to right, #151515, #202020, #1a1a1a, #151515);
-
-    .layout-tv & {
-        background: none;
-    }
+    background: #202020;
+    .layout-tv & { background: none; }
 }
 
-/* Logo / branding */
+/* ─── Logo / branding ─── */
 .pageTitleWithDefaultLogo {
     background-image: url(@jellyfin/ux-web/banner-light.png);
-
-    .layout-tv & {
-        background-image: url(@jellyfin/ux-web/icon-transparent.png);
-    }
+    .layout-tv & { background-image: url(@jellyfin/ux-web/icon-transparent.png); }
 }
 
-/* Nav menu selected state uses orange */
+/* ─── Nav ─── */
 .navMenuOption-selected {
     background: #fb610f !important;
     color: #ffffff !important;
 }
 
-/* Playing indicator accent */
-.itemProgressBarForeground {
-    background-color: #fb610f;
-}
+/* ─── Accent elements ─── */
+.itemProgressBarForeground { background-color: #fb610f; }
 
-/* Focus / active states */
 .card:focus .cardBox.visualCardBox,
 .card:focus .cardBox:not(.visualCardBox) .cardScalable,
 .card.show-focus:not(.show-animation) .cardBox.visualCardBox,
@@ -104,57 +87,38 @@
     border-color: #fb610f !important;
 }
 
-/* Buttons */
+/* ─── Buttons ─── */
 .button-submit {
-    background: #fb610f;
-    color: #ffffff;
-
-    &:focus,
-    &:hover {
-        background: #d04e00;
-    }
+    background: #fb610f; color: #ffffff;
+    &:focus, &:hover { background: #d04e00; }
 }
 
-/* Checkbox */
+/* ─── Checkboxes ─── */
 .emby-checkbox:checked + span + .checkboxOutline {
     background-color: #fb610f;
     border-color: #fb610f;
+    .checkboxIcon-checked { color: #ffffff; }
 }
 
-.emby-checkbox:checked + span + .checkboxOutline .checkboxIcon-checked {
-    color: #ffffff;
-}
+.emby-checkbox:focus + span + .checkboxOutline { border-color: #fc8140; }
 
-/* Switch accent */
-.emby-checkbox:focus + span + .checkboxOutline {
-    border-color: #fc8140;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar-thumb:horizontal,
-::-webkit-scrollbar-thumb:vertical {
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar-track-piece { background-color: #202020; }
+::-webkit-scrollbar-thumb {
+    background: #fb610f !important;
     border-radius: 2px;
-    background: center no-repeat #fb610f;
 }
 
-::-webkit-scrollbar-track-piece {
-    background-color: #202020;
-}
-
-/* Labels / inputs focus */
+/* ─── Input focus ─── */
 .inputLabelFocused,
 .selectLabelFocused,
-.textareaLabelFocused {
-    color: #fb610f;
-}
+.textareaLabelFocused { color: #fb610f; }
 
 .emby-input:focus,
 .emby-textarea:focus,
-.emby-select-withcolor:focus {
-    border-color: #fb610f !important;
-}
+.emby-select-withcolor:focus { border-color: #fb610f !important; }
 
-/* Shortcuts / active indicators */
+/* ─── Indicators ─── */
 .countIndicator,
 .fullSyncIndicator,
 .mediaSourceIndicator,
@@ -163,93 +127,49 @@
     color: #ffffff;
 }
 
-/* Button hover */
+/* ─── Icon hover ─── */
 @media (hover: hover) and (pointer: fine) {
     .paper-icon-button-light:hover:not(:disabled) {
         color: #fb610f;
         background-color: rgba(251, 97, 15, 0.12);
     }
 }
-
 .paper-icon-button-light:active:not(:disabled) {
     color: #fb610f;
     background-color: rgba(251, 97, 15, 0.12);
 }
+.paper-icon-button-light.show-focus:focus { color: #fb610f; }
 
-.paper-icon-button-light.show-focus:focus {
-    color: #fb610f;
-}
+/* ─── Up next ─── */
+.upNextDialog-countdownText { color: #fb610f; }
 
-/* Up next countdown */
-.upNextDialog-countdownText {
-    color: #fb610f;
-}
-
-/* Tab button active state */
+/* ─── Tabs ─── */
 .emby-tab-button.show-focus:focus,
-.emby-tab-button:hover {
-    color: #fb610f;
-}
+.emby-tab-button:hover { color: #fb610f; }
 
-/* Alpha picker focus */
+/* ─── Alpha picker ─── */
 .alphaPickerButton-tv:focus {
-    background-color: #fb610f;
-    color: #ffffff;
+    background-color: #fb610f !important;
+    color: #ffffff !important;
 }
 
-/* Button link */
-.button-flat:hover,
-.button-link {
-    color: #fb610f;
-}
+/* ─── Links ─── */
+.button-flat:hover, .button-link { color: #fb610f; }
 
-/* Selection commands */
+/* ─── Selection panel ─── */
 .selectionCommandsPanel {
-    background: #fb610f;
-    color: #ffffff;
-
+    background: #fb610f; color: #ffffff;
     .paper-icon-button-light:not(:disabled) {
         color: #ffffff;
-
-        &:hover,
-        &:focus {
-            background-color: #d04e00;
-        }
+        &:hover, &:focus { background-color: #d04e00; }
     }
 }
+.itemSelectionPanel { border-color: #fb610f; }
 
-.itemSelectionPanel {
-    border-color: #fb610f;
-}
+/* ─── Progress ring ─── */
+.progressring-spiner { border-color: #fb610f; }
 
-/* Progress ring */
-.progressring-spiner {
-    border-color: #fb610f;
-}
-
-/* Audio/video player accent */
-.metadataSidebarIcon {
-    color: #fb610f;
-}
-
-/* Star icon - warm gold */
-.ratingbutton-icon-withrating {
-    color: #f2b01e;
-}
-
-/* Button active */
-.buttonActive {
-    color: #fb610f !important;
-}
-
-/* Card border radius consistency */
-.cardBox:not(.visualCardBox) .cardPadder,
-.cardContent,
-.cardImageContainer,
-.blurhash-canvas,
-.itemDetailImage,
-.cardOverlayContainer,
-.paperList,
-.visualCardBox {
-    border-radius: 0.6em;
-}
+/* ─── Misc accents ─── */
+.metadataSidebarIcon { color: #fb610f; }
+.buttonActive { color: #fb610f !important; }
+.ratingbutton-icon-withrating { color: #f2b01e; }
