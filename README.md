@@ -1,44 +1,53 @@
 # Thataflix 🍊
 
-> A Jellyfin theme inspired by [thalitaneres.com.br](https://www.thalitaneres.com.br/) — warm orange accents on a dark canvas.
+> Tema para Jellyfin inspirado em [thalitaneres.com.br](https://www.thalitaneres.com.br/) — acentos laranja sobre fundo bege quente.
 
-![Theme Preview](preview.png)
+![Preview do Tema](preview.png)
 
-## Features
+## Características
 
-- **Dark & warm** — `#151515` background with orange `#fb610f` accent
-- **Custom font** — Includes the "Thata Regular" handwritten display font
-- **Rounded cards** — `0.6em` border radius for a modern, soft look
-- **Full color scheme** — MUI theme + CSS variable overrides for complete coverage
+- **Modo claro e quente** — fundo `#f7f5ee` (bege) com acento laranja `#fb610f`
+- **Fonte personalizada** — inclui a fonte "Thata Regular" (handwritten display)
+- **Cards suaves** — `0.3em` de borda arredondada para um visual moderno e limpo
+- **Paleta completa** — tema MUI + sobrescrita de variáveis CSS
+- **Navegação escura** — header `#202020` com texto branco, igual ao site original
 
-## Installation
+## Cores
 
-### Option 1: Custom CSS (Quick & Easy)
+| Variável | Valor | Uso |
+|----------|-------|-----|
+| `#f7f5ee` | Fundo | Fundo principal (bege claro) |
+| `#ffffff` | Superfície | Cards, sidebar, paper |
+| `#fb610f` | Acento | Botões, seleção, progresso |
+| `#202020` | Texto | Cor primária do texto |
+| `#000000` | Título | Cor dos títulos |
+| `#e0deca` | Bege | Elementos secundários |
+| `#f2b01e` | Estrela | Avaliações |
 
-Paste this in **Dashboard → General → Custom CSS**:
+## Instalação
+
+### Opção 1: CSS Personalizado (Rápido)
+
+Cole no **Painel → Geral → CSS Personalizado**:
 
 ```css
 :root {
-  --main-bgcolor: #151515;
-  --sidebarbg: #202020;
+  --main-bgcolor: #f7f5ee;
+  --sidebarbg: #ffffff;
   --accent: #fb610f;
   --accent-hover: #d04e00;
-  --text-primary: #fbfaf7;
-  --text-secondary: rgba(251, 250, 247, 0.7);
-  --card-bg: #202020;
-  --card-radius: 0.6em;
-  --header-bg: rgba(21, 21, 21, 0.85);
-  --emby-input-bg: rgba(255, 255, 255, 0.06);
-  --emby-select-bg: #202020;
+  --text-primary: #202020;
+  --text-secondary: rgba(32, 32, 32, 0.65);
+  --card-bg: #ffffff;
+  --card-radius: 0.3em;
+  --header-bg: #202020;
 }
 
-/* Nav selected */
 .navMenuOption-selected {
   background: #fb610f !important;
   color: #fff !important;
 }
 
-/* Buttons */
 .button-submit {
   background: #fb610f !important;
   color: #fff !important;
@@ -47,64 +56,49 @@ Paste this in **Dashboard → General → Custom CSS**:
   background: #d04e00 !important;
 }
 
-/* Progress bars */
 .itemProgressBarForeground {
   background: #fb610f !important;
 }
 
-/* Checkboxes */
 .emby-checkbox:checked + span + .checkboxOutline {
   background: #fb610f !important;
   border-color: #fb610f !important;
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar-thumb {
   background: #fb610f !important;
 }
 ```
 
-### Option 2: Build from Source (Full Theme)
+### Opção 2: Build Completo
 
-1. Clone jellyfin-web and Thataflix:
 ```bash
+# Clone o jellyfin-web e instale dependências
 git clone https://github.com/jellyfin/jellyfin-web.git
 cd jellyfin-web
 npm install
-```
 
-2. Clone Thataflix into the themes directory:
-```bash
+# Clone o tema Thataflix dentro dos temas
 git clone https://github.com/Beltzac/thataflix.git src/themes/thataflix
-```
 
-3. Register the theme in `src/themes/index.ts`:
-```ts
-import thataflix from './thataflix';
-// Add to colorSchemes:
-colorSchemes: {
-  // ... existing themes ...
-  thataflix,
-}
-```
+# Registre o tema em src/themes/index.ts:
+# import thataflix from './thataflix';
+# colorSchemes: { ... thataflix, }
 
-4. Build:
-```bash
+# Build
 npm run build:production
+
+# Copie dist/ para a raiz web do seu Jellyfin
 ```
 
-5. Copy `dist/` to your Jellyfin server's web root.
+## Preview Local
 
-## Colors
+```bash
+cd thataflix
+caddy file-server --listen :8080 --root .
+# Abra http://localhost:8080/preview.html
+```
 
-| Variable | Value | Usage |
-|----------|-------|-------|
-| `#151515` | Background | Main page background |
-| `#202020` | Surface | Cards, sidebar, paper |
-| `#fb610f` | Accent | Buttons, selection, progress |
-| `#fbfaf7` | Text | Primary text color |
-| `#f2b01e` | Star | Rating stars |
-
-## License
+## Licença
 
 MIT

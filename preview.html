@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +14,16 @@
   }
 
   :root {
-    --bg: #202020;
-    --surface: #2a2a2a;
+    --bg: #f7f5ee;
+    --surface: #ffffff;
     --accent: #fb610f;
     --accent-hover: #d04e00;
-    --text: #fbfaf7;
-    --text-secondary: rgba(251, 250, 247, 0.65);
-    --action: #e0deca;
-    --card-radius: 0.4em;
-    --border: rgba(251, 250, 247, 0.08);
+    --text: #202020;
+    --text-secondary: rgba(32, 32, 32, 0.6);
+    --beige: #e0deca;
+    --beige-light: #f1ebdd;
+    --card-radius: 0.3em;
+    --border: rgba(32, 32, 32, 0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,12 +39,11 @@
 
   /* ── Header ── */
   .header {
-    background: var(--bg);
-    padding: 16px 48px;
+    background: #202020;
+    padding: 14px 48px;
     display: flex;
     align-items: center;
     gap: 48px;
-    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -52,27 +52,27 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     text-decoration: none;
   }
 
   .logo-mark {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     background: var(--accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
   }
 
   .logo-text {
     font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
-    font-size: 22px;
-    color: var(--text);
+    font-size: 20px;
+    color: #ffffff;
     letter-spacing: 1px;
   }
 
@@ -85,7 +85,7 @@
   }
 
   .nav-links a {
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
     font-size: 13px;
     font-weight: 300;
@@ -110,29 +110,29 @@
   .icon-btn {
     background: none;
     border: none;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.2s;
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .icon-btn:hover {
-    background: rgba(251, 97, 15, 0.12);
+    background: rgba(251, 97, 15, 0.2);
     color: var(--accent);
   }
 
   .search-box {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(251, 97, 15, 0.25);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(251, 97, 15, 0.3);
     border-radius: 4px;
-    padding: 8px 14px;
-    color: var(--text);
+    padding: 7px 14px;
+    color: #fff;
     width: 200px;
     font-size: 13px;
     outline: none;
@@ -141,19 +141,23 @@
   }
 
   .search-box:focus { border-color: var(--accent); }
-  .search-box::placeholder { color: var(--text-secondary); }
+  .search-box::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+  .search-box { font-family: 'Brandon Grot', 'Segoe UI', system-ui, sans-serif; }
 
   /* ── Layout ── */
   .layout {
     display: flex;
-    min-height: calc(100vh - 65px);
+    min-height: calc(100vh - 62px);
   }
 
   /* ── Sidebar ── */
   .sidebar {
     width: 220px;
+    background: #ffffff;
     padding: 24px 0;
     flex-shrink: 0;
+    border-right: 1px solid var(--border);
   }
 
   .sidebar-section {
@@ -162,7 +166,7 @@
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--text-secondary);
-    font-weight: 300;
+    font-weight: 400;
     margin-top: 16px;
   }
 
@@ -184,20 +188,20 @@
 
   .sidebar-item:hover {
     color: var(--accent);
-    background: rgba(251, 97, 15, 0.06);
+    background: rgba(251, 97, 15, 0.04);
   }
 
   .sidebar-item.active {
-    background: rgba(251, 97, 15, 0.1);
+    background: rgba(251, 97, 15, 0.08);
     color: var(--accent);
     border-left-color: var(--accent);
   }
 
   .sidebar-item .icon {
-    font-size: 16px;
+    font-size: 15px;
     width: 20px;
     text-align: center;
-    opacity: 0.6;
+    opacity: 0.5;
   }
 
   .sidebar-item.active .icon { opacity: 1; }
@@ -224,17 +228,17 @@
 
   .section-title {
     font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 400;
     color: var(--text);
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
   }
 
   .see-all {
     color: var(--accent);
     text-decoration: none;
     font-size: 12px;
-    font-weight: 300;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: opacity 0.2s;
@@ -257,11 +261,12 @@
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     cursor: pointer;
     border: 1.5px solid transparent;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
   }
 
   .card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   }
 
   .card:focus-within {
@@ -274,28 +279,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
-    color: rgba(251, 250, 247, 0.08);
+    font-size: 30px;
+    color: rgba(32, 32, 32, 0.08);
   }
 
-  .card-img.n1 { background: linear-gradient(135deg, #3d2b1f, #2a1a10); }
-  .card-img.n2 { background: linear-gradient(135deg, #2a1a3d, #1a0d2e); }
-  .card-img.n3 { background: linear-gradient(135deg, #1f3d2b, #14281c); }
-  .card-img.n4 { background: linear-gradient(135deg, #3d1f1f, #2a1212); }
-  .card-img.n5 { background: linear-gradient(135deg, #1f2b3d, #121c2a); }
-  .card-img.n6 { background: linear-gradient(135deg, #3d3d1f, #2a2a12); }
+  .card-img.n1 { background: #e0deca; }
+  .card-img.n2 { background: #d4cfbb; }
+  .card-img.n3 { background: #f1ebdd; }
+  .card-img.n4 { background: #e8e3d0; }
+  .card-img.n5 { background: #f7f5ee; }
+  .card-img.n6 { background: #ece7d8; }
 
   .card-body { padding: 12px; }
 
   .card-title {
     font-size: 13px;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 3px;
-    letter-spacing: 0.3px;
   }
 
   .card-subtitle {
@@ -318,7 +322,7 @@
   .card .progress-bar {
     width: 100%;
     height: 2px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(32, 32, 32, 0.06);
     border-radius: 1px;
     overflow: hidden;
     margin-top: 6px;
@@ -328,7 +332,6 @@
     height: 100%;
     background: var(--accent);
     border-radius: 1px;
-    transition: width 0.3s;
   }
 
   /* ── Detail ── */
@@ -341,23 +344,24 @@
   .detail-poster {
     width: 200px;
     aspect-ratio: 2/3;
-    background: linear-gradient(135deg, #2a1a3d, #1a0d2e);
+    background: #e0deca;
     border-radius: var(--card-radius);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 48px;
-    color: rgba(251, 250, 247, 0.06);
+    color: rgba(32, 32, 32, 0.08);
   }
 
   .detail-info { flex: 1; }
 
   .detail-title {
     font-family: 'Thata Regular', 'Brandon Grot', sans-serif;
-    font-size: 32px;
+    font-size: 30px;
     margin-bottom: 8px;
-    letter-spacing: 0.5px;
+    color: #000000;
+    letter-spacing: 0.3px;
   }
 
   .detail-meta {
@@ -372,9 +376,7 @@
 
   .detail-meta .sep { opacity: 0.3; }
 
-  .detail-rating {
-    color: #f2b01e;
-  }
+  .detail-rating { color: #f2b01e; }
 
   .detail-tags {
     display: flex;
@@ -384,18 +386,18 @@
   }
 
   .tag {
-    border: 1px solid var(--border);
+    background: #f1ebdd;
     padding: 4px 12px;
     border-radius: 2px;
     font-size: 11px;
     color: var(--text-secondary);
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .tag.accent {
-    border-color: var(--accent);
+    background: rgba(251, 97, 15, 0.1);
     color: var(--accent);
   }
 
@@ -417,7 +419,7 @@
     border: none;
     border-radius: 4px;
     font-size: 13px;
-    font-weight: 300;
+    font-weight: 400;
     cursor: pointer;
     transition: all 0.2s;
     letter-spacing: 0.5px;
@@ -432,11 +434,11 @@
   .btn-primary:hover { background: var(--accent-hover); }
 
   .btn-secondary {
-    background: #333;
-    color: var(--text-secondary);
+    background: #e8e6df;
+    color: var(--text);
   }
 
-  .btn-secondary:hover { background: #404040; color: var(--text); }
+  .btn-secondary:hover { background: #dcd9d0; }
 
   .btn-icon {
     width: 40px;
@@ -450,6 +452,13 @@
   }
 
   /* ── List ── */
+  .list-wrap {
+    border: 1px solid var(--border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    background: var(--surface);
+  }
+
   .list-item {
     display: flex;
     align-items: center;
@@ -462,7 +471,7 @@
 
   .list-item:last-child { border-bottom: none; }
 
-  .list-item:hover { background: rgba(251, 97, 15, 0.04); }
+  .list-item:hover { background: rgba(251, 97, 15, 0.03); }
 
   .list-item .index {
     width: 20px;
@@ -474,20 +483,20 @@
   .list-item .thumb {
     width: 40px;
     height: 40px;
-    background: linear-gradient(135deg, #2a2a2a, #333);
+    background: #e0deca;
     border-radius: 3px;
     flex-shrink: 0;
   }
 
   .list-item .info { flex: 1; }
-  .list-item .info .title { font-size: 14px; font-weight: 300; }
+  .list-item .info .title { font-size: 14px; font-weight: 400; }
   .list-item .info .sub { font-size: 12px; color: var(--text-secondary); font-weight: 300; }
   .list-item .duration { color: var(--text-secondary); font-size: 12px; font-weight: 300; }
   .list-item .progress { width: 80px; }
 
   .list-item .progress-bar {
     height: 2px;
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(32, 32, 32, 0.06);
     border-radius: 1px;
     overflow: hidden;
   }
@@ -500,7 +509,7 @@
 
   /* ── Scrollbar ── */
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-track { background: #e0deca; }
   ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
 
   /* ── Footer ── */
@@ -523,7 +532,6 @@
 
   .footer .brand span { color: var(--text); }
 
-  /* ── Responsive ── */
   @media (max-width: 768px) {
     .sidebar { display: none; }
     .header { padding: 12px 16px; gap: 24px; }
@@ -542,13 +550,13 @@
 <header class="header">
   <a href="#" class="logo">
     <div class="logo-mark">T</div>
-    <span class="logo-text">thata<span>flix</span></span>
+    <span class="logo-text">Thata<span>flix</span></span>
   </a>
   <ul class="nav-links">
-    <li><a href="#" class="active">Home</a></li>
-    <li><a href="#">Movies</a></li>
-    <li><a href="#">Series</a></li>
-    <li><a href="#">Music</a></li>
+    <li><a href="#" class="active">Início</a></li>
+    <li><a href="#">Filmes</a></li>
+    <li><a href="#">Séries</a></li>
+    <li><a href="#">Música</a></li>
   </ul>
   <div class="header-actions">
     <input class="search-box" placeholder="Search..." type="text">
@@ -561,29 +569,29 @@
 <div class="layout">
 
   <nav class="sidebar">
-    <div class="sidebar-section">Browse</div>
-    <a class="sidebar-item active"><span class="icon">⌂</span> Home</a>
-    <a class="sidebar-item"><span class="icon">⊞</span> Movies</a>
-    <a class="sidebar-item"><span class="icon">≡</span> Series</a>
-    <a class="sidebar-item"><span class="icon">♫</span> Music</a>
-    <a class="sidebar-item"><span class="icon">✦</span> Collections</a>
+    <div class="sidebar-section">Navegar</div>
+    <a class="sidebar-item active"><span class="icon">⌂</span> Início</a>
+    <a class="sidebar-item"><span class="icon">⊞</span> Filmes</a>
+    <a class="sidebar-item"><span class="icon">≡</span> Séries</a>
+    <a class="sidebar-item"><span class="icon">♫</span> Música</a>
+    <a class="sidebar-item"><span class="icon">✦</span> Coleções</a>
     <div class="sidebar-divider"></div>
-    <div class="sidebar-section">Library</div>
-    <a class="sidebar-item"><span class="icon">☆</span> Favorites</a>
-    <a class="sidebar-item"><span class="icon">↻</span> Continue</a>
+    <div class="sidebar-section">Biblioteca</div>
+    <a class="sidebar-item"><span class="icon">☆</span> Favoritos</a>
+    <a class="sidebar-item"><span class="icon">↻</span> Continuar</a>
     <a class="sidebar-item"><span class="icon">☰</span> Playlists</a>
     <div class="sidebar-divider"></div>
     <div class="sidebar-section">Admin</div>
-    <a class="sidebar-item"><span class="icon">◉</span> Dashboard</a>
-    <a class="sidebar-item"><span class="icon">◎</span> Users</a>
+    <a class="sidebar-item"><span class="icon">◉</span> Painel</a>
+    <a class="sidebar-item"><span class="icon">◎</span> Usuários</a>
   </nav>
 
   <main class="content">
 
     <!-- Continue -->
     <div class="section-header">
-      <h2 class="section-title">Continue Watching</h2>
-      <a href="#" class="see-all">See All →</a>
+      <h2 class="section-title">Continuar Assistindo</h2>
+      <a href="#" class="see-all">Ver Tudo →</a>
     </div>
     <div class="card-grid">
       <div class="card" tabindex="0">
@@ -622,8 +630,8 @@
 
     <!-- Latest -->
     <div class="section-header">
-      <h2 class="section-title">Latest Movies</h2>
-      <a href="#" class="see-all">See All →</a>
+      <h2 class="section-title">Filmes Recentes</h2>
+      <a href="#" class="see-all">Ver Tudo →</a>
     </div>
     <div class="card-grid">
       <div class="card" tabindex="0">
@@ -667,7 +675,7 @@
 
     <!-- Detail -->
     <div class="section-header">
-      <h2 class="section-title">Now Playing</h2>
+      <h2 class="section-title">Reproduzindo Agora</h2>
     </div>
     <div class="detail-header">
       <div class="detail-poster">⌂</div>
@@ -695,16 +703,16 @@
         </p>
         <div class="btn-row">
           <button class="btn btn-primary">▶ Play</button>
-          <button class="btn btn-secondary">+ Favorites</button>
+          <button class="btn btn-secondary">+ Favoritos</button>
           <button class="btn btn-secondary btn-icon">↑</button>
           <button class="btn btn-secondary btn-icon">↓</button>
         </div>
       </div>
     </div>
 
-    <!-- Episode List -->
-    <h3 style="font-family:'Thata Regular',sans-serif;font-size:20px;margin-bottom:16px;letter-spacing:0.5px;">Episodes</h3>
-    <div style="border:1px solid var(--border);border-radius:var(--card-radius);overflow:hidden;">
+    <!-- Episodes -->
+    <h3 style="font-family:'Thata Regular',sans-serif;font-size:19px;margin-bottom:16px;">Episódios</h3>
+    <div class="list-wrap">
       <div class="list-item">
         <span class="index">01</span>
         <div class="thumb"></div>
@@ -713,7 +721,7 @@
           <div class="sub">S01E01 · 1h 30m</div>
         </div>
         <div class="progress"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
-        <span class="duration">Watched</span>
+        <span class="duration">Assistido</span>
       </div>
       <div class="list-item">
         <span class="index">02</span>
@@ -723,7 +731,7 @@
           <div class="sub">S01E02 · 1h 25m</div>
         </div>
         <div class="progress"><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></div>
-        <span class="duration">Watched</span>
+        <span class="duration">Assistido</span>
       </div>
       <div class="list-item">
         <span class="index">03</span>
@@ -751,9 +759,9 @@
 </div>
 
 <footer class="footer">
-  <div class="brand">thata<span>flix</span></div>
-  <p>Jellyfin theme · inspired by thalitaneres.com.br</p>
-  <p style="margin-top:4px;opacity:0.5;font-size:11px;">orange accent · dark minimal · custom font</p>
+  <div class="brand">Thata<span>flix</span></div>
+  <p>Tema para Jellyfin · inspirado em thalitaneres.com.br</p>
+  <p style="margin-top:4px;opacity:0.5;font-size:11px;">bege quente · laranja · fonte personalizada</p>
 </footer>
 
 </body>

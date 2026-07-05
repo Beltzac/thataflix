@@ -1,14 +1,14 @@
 import type { ColorSystemOptions } from '@mui/material/styles';
 import { buildCustomColorScheme } from '../../utils';
 
-/** Thataflix — inspired by thalitaneres.com.br */
+/** Tema Thataflix — inspirado em thalitaneres.com.br (modo claro/quente) */
 const theme: ColorSystemOptions = buildCustomColorScheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
             main: '#fb610f',
             dark: '#d04e00',
-            light: '#fc8140',
+            light: '#fc8a4a',
             contrastText: '#ffffff'
         },
         secondary: {
@@ -22,26 +22,26 @@ const theme: ColorSystemOptions = buildCustomColorScheme({
             contrastText: '#ffffff'
         },
         background: {
-            default: '#202020',
-            paper: '#2a2a2a'
+            default: '#f7f5ee',
+            paper: '#ffffff'
         },
         text: {
-            primary: '#fbfaf7',
-            secondary: 'rgba(251, 250, 247, 0.7)'
+            primary: '#202020',
+            secondary: 'rgba(32, 32, 32, 0.65)'
         },
         action: {
             focus: 'rgba(251, 97, 15, 0.2)',
-            hover: 'rgba(251, 97, 15, 0.12)',
-            selectedOpacity: 0.2
+            hover: 'rgba(251, 97, 15, 0.08)',
+            selectedOpacity: 0.15
         },
-        divider: 'rgba(251, 250, 247, 0.08)',
+        divider: 'rgba(32, 32, 32, 0.1)',
         starIcon: { main: '#f2b01e' },
         AppBar: { defaultBg: '#202020' },
-        SnackbarContent: { bg: '#2a2a2a', color: '#fbfaf7' },
-        Alert: { infoFilledBg: '#2a2a2a', infoFilledColor: '#fbfaf7' },
+        SnackbarContent: { bg: '#202020', color: '#fbfaf7' },
+        Alert: { infoFilledBg: '#e8e6df', infoFilledColor: '#202020' },
         Button: {
-            inheritContainedBg: '#333333',
-            inheritContainedHoverBg: '#404040'
+            inheritContainedBg: '#e8e6df',
+            inheritContainedHoverBg: '#dcd9d0'
         }
     }
 });
